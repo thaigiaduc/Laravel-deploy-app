@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+    volumes:
+      - "./nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
+    networks:
+      - laravel-deploy-network
+    depends_on:
+      - app
+      - db
+    links:
+      - app
+
+  app:
+    build:
+      context: ./laravel-app
+      dockerfile: Dockerfile
+    container_name: app
+    tty: true
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./laravel-app:/var/www/html"
+      - "./php/local.ini:/usr/local/etc/php/conf.d/local.ini"
+    networks:
+      - laravel-deploy-network
+
+  db:
+    image: mysql:latest
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3006:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=HR
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=admin
+    networks:
+      - laravel-deploy-network
+
+networks:
+  laravel-deploy-network:
+    driver: bridge  
+
+volumes:
+  mysql:
+    driver: local
+
+

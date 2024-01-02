@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-db
+  namespace: laravel-deploy-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          image: thaigiaduc/laravel-first-app-db
+          ports:
+            - containerPort: 3307
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: admin
+            - name: MYSQL_DATABASE
+              value: HR
+            - name: MYSQL_USER
+              value: admin
+            - name: MYSQL_PASSWORD
+              value: admin
+          volumeMounts:
+            - name: mysql
+              mountPath: /var/lib/mysql
+
+      volumes:
+        - name: mysql
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: laravel-deploy-app
+spec:
+  selector:
+    app: db
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
