@@ -29,7 +29,7 @@ metadata:
 spec:
   selector:
     app: app
-  type: LoadBalancer
+  type: NodePort
   ports:
     - protocol: TCP
       port: 9000

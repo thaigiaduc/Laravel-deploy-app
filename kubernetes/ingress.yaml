@@ -5,10 +5,11 @@ metadata:
   namespace: laravel-deploy-app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-
 spec:
+  ingressClassName: nginx
   rules:
-  - http:
+  - host: laraveldeploy.com
+    http:
       paths:
       - path: /
         pathType: Prefix
