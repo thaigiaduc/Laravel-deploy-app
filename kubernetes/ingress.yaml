@@ -18,3 +18,8 @@ spec:
             name: nginx
             port:
               number: 80
+  defaultBackend:
+    service:
+      name: nginx
+      port:
+        number: 8000
