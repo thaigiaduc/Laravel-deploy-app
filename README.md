@@ -9,8 +9,23 @@ docker compose build
 ## Run container
 
 ```
-docker compose upt -d
+docker compose up -d
 ```
+
+## Deploy on kubernetes with docker desktop
+
+- Settings->enable kubernetes on docker desktop
+
+```
+kubectl config get-contexts
+kubectl config use-context docker-desktop
+kubectl get nodes
+```
+
+## Deploy on kubernetes with minikube
+
+- Download and install minikube
+  https://minikube.sigs.k8s.io/docs/start/
 
 ## Using kubernetes in docker desktop
 
@@ -31,6 +46,9 @@ kubectl get deploymenyt -n laravel-deploy-app
 
 ## Ingress
 
+- Install helm
+  https://helm.sh/docs/intro/install/
+
 - Using helm to install nginx-ingress-controller
 
 ```
@@ -50,4 +68,10 @@ kubectl apply -f kubernetes/ingress.yaml
 
 ```
 kubectl get ingress my-ingress -n laravel-deploy-app
+```
+
+- Edit file hosts in local machine (ubuntu)
+```
+code /etc/hosts
+127.0.0.1 your-host.com
 ```
