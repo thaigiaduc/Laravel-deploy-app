@@ -14,18 +14,12 @@ docker compose up -d
 
 ## Deploy on kubernetes with docker desktop
 
-- Settings->enable kubernetes on docker desktop
+- https://docs.docker.com/desktop/kubernetes/
 
-```
-kubectl config get-contexts
-kubectl config use-context docker-desktop
-kubectl get nodes
-```
 
 ## Deploy on kubernetes with minikube
 
-- Download and install minikube
-  https://minikube.sigs.k8s.io/docs/start/
+- https://minikube.sigs.k8s.io/docs/start/
 
 ## Using kubernetes in docker desktop
 
