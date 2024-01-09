@@ -1,0 +1,4 @@
+apiVersion: v2
+name: my-laravel-app
+description: A Helm chart for Laravel application with Nginx Ingress
+version: 0.1.0

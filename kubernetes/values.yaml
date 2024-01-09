@@ -1,0 +1,32 @@
+# Cấu hình namespace
+namespace:
+  name: laravel-deploy-app
+
+# Cấu hình deployment và service cho cơ sở dữ liệu
+database:
+  image: thaigiaduc/laravel-first-app-db
+  replicas: 1
+  port: 3306
+  env:
+    MYSQL_ROOT_PASSWORD: admin
+    MYSQL_DATABASE: HR
+    MYSQL_USER: admin
+    MYSQL_PASSWORD: admin
+
+# Cấu hình deployment và service cho ứng dụng
+app:
+  image: thaigiaduc/laravel-first-app-app
+  replicas: 1
+  port: 9000
+
+# Cấu hình deployment và service cho web server (nginx)
+webserver:
+  image: thaigiaduc/laravel-first-app-nginx
+  replicas: 1
+  port: 80
+
+# Cấu hình ingress
+ingress:
+  name: my-ingress
+  host: laraveldeploy.com
+  tlsSecretName: tls-secret

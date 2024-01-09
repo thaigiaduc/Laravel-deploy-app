@@ -7,6 +7,10 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - laraveldeploy.com
+    secretName: tls-secret 
   rules:
   - host: laraveldeploy.com
     http:
