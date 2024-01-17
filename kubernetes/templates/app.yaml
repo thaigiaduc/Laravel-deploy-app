@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-app
-  namespace: {{ .Values.namespace.name }}
+  namespace: laravel-deploy-app
 spec:
   replicas: 1
   selector:
@@ -13,6 +13,7 @@ spec:
       labels:
         app: app
     spec:
+      serviceAccountName: peter-admin
       containers:
         - name: app
           image: thaigiaduc/laravel-first-app-app

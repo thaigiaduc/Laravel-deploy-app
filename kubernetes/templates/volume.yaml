@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: laravel-db-pv
+  namespace: laravel-deploy-app
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /path/on/host  # Thay đổi đường dẫn này thành đường dẫn thực tế trên máy host của bạn
